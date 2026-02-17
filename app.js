@@ -478,6 +478,10 @@
   }
 
   function renderMulti(q) {
+    var multiHintEl = document.getElementById('question-multi-hint');
+    if (multiHintEl) {
+      multiHintEl.classList.remove('hidden');
+    }
     var html = '<ul class="options-list" role="group" aria-label="Opciones">';
     q.options.forEach(function (opt, i) {
       html += '<li class="option">';
@@ -721,8 +725,10 @@
 
     feedbackArea.classList.remove('hidden', 'correct', 'wrong');
     feedbackArea.classList.add(correct ? 'correct' : 'wrong');
+    var correctAnswerHtml = correct ? '' : '<div class="correct-answer">' +
+      showCorrectAnswer(q).split('\n').map(escapeHtml).join('<br>') + '</div>';
     feedbackArea.innerHTML = (correct ? '<span class="feedback-icon">✅</span> Correcto.' : '<span class="feedback-icon">❌</span> Incorrecto.') +
-      (correct ? '' : '<div class="correct-answer">' + escapeHtml(showCorrectAnswer(q).replace(/\n/g, '<br>')) + '</div>');
+      correctAnswerHtml;
 
     progressFill.style.width = '100%';
     btnSubmit.classList.add('hidden');
@@ -737,6 +743,16 @@
     progressFill.style.width = '0%';
 
     questionPrompt.textContent = state.currentQuestion.prompt;
+    var multiHintEl = document.getElementById('question-multi-hint');
+    if (multiHintEl) {
+      if (state.currentQuestion.type === 'multi') {
+        multiHintEl.classList.remove('hidden');
+        questionPrompt.setAttribute('aria-describedby', 'question-multi-hint');
+      } else {
+        multiHintEl.classList.add('hidden');
+        questionPrompt.removeAttribute('aria-describedby');
+      }
+    }
     feedbackArea.classList.add('hidden');
     feedbackArea.innerHTML = '';
     btnSubmit.classList.remove('hidden');
