@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manipulación segura de alimentos</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="file-protocol-warning" class="file-warning hidden" role="alert">
+    <p>Para guardar progreso, ejecutá con servidor local.</p>
+    <p class="cmd">Windows: <code>py -m http.server 8000</code></p>
+    <p class="cmd">Mac/Linux: <code>python3 -m http.server 8000</code></p>
+    <p><a href="http://localhost:8000" id="local-link">Abrir http://localhost:8000</a></p>
+  </div>
+
+  <main id="app">
+    <!-- Pantalla inicio -->
+    <section id="screen-start" class="screen active">
+      <div class="card">
+        <h1>Manipulación segura de alimentos</h1>
+        <p class="subtitle">Estudiá con el banco de preguntas</p>
+        <div id="stats-panel" class="stats-panel">
+          <div class="stat"><span class="stat-label">XP</span><span id="stat-xp">0</span></div>
+          <div class="stat"><span class="stat-label">Nivel</span><span id="stat-level">1</span></div>
+          <div class="stat"><span class="stat-label">Racha</span><span id="stat-streak">0</span></div>
+          <div class="stat"><span class="stat-label">% acierto</span><span id="stat-pct">—</span></div>
+          <div class="stat"><span class="stat-label">Vistas</span><span id="stat-vistas">0 / 0</span></div>
+        </div>
+        <button type="button" id="btn-start" class="btn btn-primary">Empezar</button>
+        <button type="button" id="btn-reset" class="btn btn-secondary">Resetear progreso</button>
+      </div>
+    </section>
+
+    <!-- Pantalla pregunta -->
+    <section id="screen-quiz" class="screen">
+      <div class="card">
+        <div class="progress-bar">
+          <div id="progress-fill" class="progress-fill"></div>
+        </div>
+        <p id="question-prompt" class="prompt"></p>
+        <div id="question-body"></div>
+        <div id="feedback-area" class="feedback-area hidden"></div>
+        <div class="actions">
+          <button type="button" id="btn-submit" class="btn btn-primary" disabled>Enviar</button>
+          <button type="button" id="btn-next" class="btn btn-primary hidden">Siguiente</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
