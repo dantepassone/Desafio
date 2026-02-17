@@ -27,6 +27,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 1rem;
+  overflow-x: hidden;
 }
 
 /* --- Aviso file:// --- */
@@ -60,6 +61,8 @@ body {
   display: none;
   width: 100%;
   max-width: 560px;
+  min-width: 0;
+  overflow-x: hidden;
 }
 .screen.active { display: block; }
 
@@ -68,6 +71,9 @@ body {
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 1.5rem;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: hidden;
 }
 
 h1 {
@@ -204,6 +210,7 @@ h1 {
 /* --- Match: filas con dropdown --- */
 .match-rows {
   margin: 0 0 1rem;
+  min-width: 0;
 }
 .match-row {
   display: flex;
@@ -211,14 +218,20 @@ h1 {
   gap: 0.75rem;
   margin-bottom: 0.75rem;
   flex-wrap: wrap;
+  min-width: 0;
 }
 .match-left {
-  min-width: 120px;
+  min-width: 0;
+  max-width: 100%;
   font-weight: 500;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  flex: 0 1 auto;
 }
 .match-row select {
-  flex: 1;
-  min-width: 180px;
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 100%;
   padding: 0.5rem;
   font-size: 0.95rem;
   background: rgba(255,255,255,0.08);
@@ -271,9 +284,10 @@ h1 {
 .actions .btn { flex: 1; }
 .hidden { display: none !important; }
 
-@media (max-width: 480px) {
+@media (max-width: 520px) {
   .card { padding: 1rem; }
   h1 { font-size: 1.25rem; }
-  .match-row { flex-direction: column; align-items: flex-start; }
-  .match-row select { min-width: 100%; }
+  .match-row { flex-direction: column; align-items: stretch; gap: 0.35rem; }
+  .match-left { max-width: none; }
+  .match-row select { min-width: 0; width: 100%; }
 }
