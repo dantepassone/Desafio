@@ -504,7 +504,7 @@
     q.left.forEach(function (leftVal, i) {
       html += '<div class="match-row">';
       html += '<span class="match-left">' + escapeHtml(leftVal) + '</span>';
-      html += '<select data-left="' + escapeHtml(leftVal) + '" aria-label="' + escapeHtml(leftVal) + '">';
+      html += '<select data-left-index="' + i + '" aria-label="' + escapeHtml(leftVal) + '">';
       html += '<option value="">— Elegir —</option>';
       q.right.forEach(function (rightVal, j) {
         html += '<option value="' + j + '">' + escapeHtml(rightVal) + '</option>';
@@ -593,11 +593,14 @@
     return arr;
   }
 
-  function getMatchAnswer() {
+  function getMatchAnswer(q) {
     var map = {};
     questionBody.querySelectorAll('select').forEach(function (sel) {
-      var left = sel.getAttribute('data-left');
-      map[left] = sel.value === '' ? -1 : parseInt(sel.value, 10);
+      var idx = parseInt(sel.getAttribute('data-left-index'), 10);
+      if (idx >= 0 && q && q.left && q.left[idx] !== undefined) {
+        var key = q.left[idx];
+        map[key] = sel.value === '' ? -1 : parseInt(sel.value, 10);
+      }
     });
     return map;
   }
@@ -670,8 +673,9 @@
 
   function markMatchCorrect(q) {
     questionBody.querySelectorAll('select').forEach(function (sel) {
-      var left = sel.getAttribute('data-left');
-      var correctIdx = q.answerMap[left];
+      var idx = parseInt(sel.getAttribute('data-left-index'), 10);
+      var key = idx >= 0 && q.left && q.left[idx] !== undefined ? q.left[idx] : null;
+      var correctIdx = key !== null && q.answerMap[key] !== undefined ? q.answerMap[key] : -1;
       sel.disabled = true;
       if (parseInt(sel.value, 10) === correctIdx) sel.parentElement.classList.add('correct');
       else sel.parentElement.classList.add('wrong');
