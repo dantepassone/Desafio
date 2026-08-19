@@ -2,6 +2,10 @@
 
 Juego tipo Duolingo/Preguntados para estudiar **Manipulación segura de alimentos**. Sin backend; el progreso se guarda en cookies (y en localStorage como respaldo).
 
+## Otras materias
+
+- [`uml/`](uml/) — Quiz de **UML y modelado de sistemas**, basado en el apunte de la materia. Usa su propio banco de preguntas y guarda el progreso por separado.
+
 ## Cómo ejecutar
 
 ### Recomendado: servidor local (para que las cookies persistan)

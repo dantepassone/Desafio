@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Quiz interactivo para estudiar UML, diagramas de casos de uso y diagramas de clases.">
+  <title>UML y modelado de sistemas - Quiz</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="file-protocol-warning" class="file-warning hidden" role="alert">
+    <p>Para guardar el progreso en cookies, ejecutá el proyecto con un servidor local.</p>
+    <p class="cmd">Windows: <code>py -m http.server 8000</code></p>
+    <p class="cmd">Mac/Linux: <code>python3 -m http.server 8000</code></p>
+    <p><a href="http://localhost:8000/uml/" id="local-link">Abrir http://localhost:8000/uml/</a></p>
+  </div>
+
+  <main id="app">
+    <section id="screen-start" class="screen active">
+      <div class="card">
+        <p class="eyebrow">Análisis y diseño de sistemas</p>
+        <h1>UML y modelado de sistemas</h1>
+        <p class="subtitle">Practicá el contenido del apunte con preguntas variadas</p>
+
+        <div id="stats-panel" class="stats-panel" aria-label="Estadísticas de estudio">
+          <div class="stat"><span class="stat-label">XP</span><span id="stat-xp">0</span></div>
+          <div class="stat"><span class="stat-label">Nivel</span><span id="stat-level">1</span></div>
+          <div class="stat"><span class="stat-label">Racha</span><span id="stat-streak">0</span></div>
+          <div class="stat"><span class="stat-label">Acierto</span><span id="stat-pct">—</span></div>
+          <div class="stat"><span class="stat-label">Vistas</span><span id="stat-vistas">0 / 0</span></div>
+        </div>
+
+        <button type="button" id="btn-start" class="btn btn-primary">Empezar a practicar</button>
+        <button type="button" id="btn-reset" class="btn btn-secondary">Resetear progreso</button>
+        <a class="back-link" href="../index.html">← Volver al quiz de alimentos</a>
+      </div>
+    </section>
+
+    <section id="screen-quiz" class="screen" aria-live="polite">
+      <div class="card">
+        <div class="quiz-meta">
+          <span>UML</span>
+          <span id="question-type-label">Pregunta</span>
+        </div>
+        <div class="progress-bar" aria-hidden="true">
+          <div id="progress-fill" class="progress-fill"></div>
+        </div>
+        <p id="question-prompt" class="prompt"></p>
+        <p id="question-multi-hint" class="multi-hint hidden" role="status">Podés elegir más de una opción.</p>
+        <div id="question-body"></div>
+        <div id="feedback-area" class="feedback-area hidden" role="status"></div>
+        <div class="actions">
+          <button type="button" id="btn-submit" class="btn btn-primary" disabled>Enviar</button>
+          <button type="button" id="btn-next" class="btn btn-primary hidden">Siguiente</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
