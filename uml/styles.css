@@ -33,6 +33,13 @@ body {
   overflow-x: hidden;
 }
 
+#app {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin: auto 0;
+}
+
 .file-warning {
   position: fixed;
   inset: 0 0 auto;
@@ -143,8 +150,7 @@ h1 {
 .btn:focus-visible,
 .option:focus-within,
 .order-btns button:focus-visible,
-.match-row select:focus-visible,
-.back-link:focus-visible {
+.match-row select:focus-visible {
   outline: 3px solid rgba(185, 170, 255, 0.72);
   outline-offset: 3px;
 }
@@ -162,16 +168,6 @@ h1 {
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 .btn-secondary:hover { color: var(--text); background: rgba(255, 255, 255, 0.05); }
-
-.back-link {
-  display: block;
-  width: fit-content;
-  margin: 1.1rem auto 0;
-  color: var(--muted);
-  font-size: 0.86rem;
-  text-decoration: none;
-}
-.back-link:hover { color: var(--text); text-decoration: underline; }
 
 .quiz-meta {
   display: flex;
@@ -203,6 +199,21 @@ h1 {
   font-size: 1.12rem;
   font-weight: 650;
   line-height: 1.45;
+}
+
+.question-visual {
+  margin: -0.15rem 0 1rem;
+  padding: 0.9rem 1rem;
+  overflow-x: auto;
+  color: #dcfff5;
+  background: rgba(7, 13, 26, 0.62);
+  border: 1px solid rgba(66, 211, 165, 0.4);
+  border-radius: 10px;
+  font-family: Consolas, "Cascadia Mono", "Courier New", monospace;
+  font-size: 0.94rem;
+  font-weight: 650;
+  line-height: 1.55;
+  white-space: pre;
 }
 
 .multi-hint {
@@ -237,6 +248,11 @@ h1 {
 }
 .option:hover { background: rgba(255, 255, 255, 0.075); }
 .option label { flex: 1; cursor: pointer; }
+.option-visual span {
+  font-family: Consolas, "Cascadia Mono", "Courier New", monospace;
+  font-weight: 650;
+  white-space: pre-wrap;
+}
 .option input {
   width: 1.15rem;
   height: 1.15rem;
@@ -259,6 +275,10 @@ h1 {
   border-radius: 10px;
 }
 .match-left { min-width: 0; font-weight: 650; overflow-wrap: anywhere; }
+.visual-match .match-left {
+  font-family: Consolas, "Cascadia Mono", "Courier New", monospace;
+  color: #dcfff5;
+}
 .match-row select {
   width: 100%;
   min-width: 0;

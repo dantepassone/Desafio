@@ -184,6 +184,7 @@
     {
       id: 'S25', type: 'single',
       prompt: '¿Qué significa la relación <<include>>?',
+      visual: '(Realizar compra) ── <<include>> ──▷ (Validar pago)',
       options: ['El caso principal incluye obligatoriamente a otro', 'El comportamiento adicional es opcional', 'Un actor hereda de una clase', 'Dos objetos se ejecutan en el mismo servidor'],
       answer: [0],
       explanation: 'Include = siempre u obligatorio.'
@@ -191,6 +192,7 @@
     {
       id: 'S26', type: 'single',
       prompt: '¿Qué significa la relación <<extend>>?',
+      visual: '(Enviar notificación) ── <<extend>> ──▷ (Realizar pedido)',
       options: ['Agrega un comportamiento opcional o condicionado', 'Incluye siempre otro caso de uso', 'Elimina un actor del sistema', 'Crea una clase hija'],
       answer: [0],
       explanation: 'Extend = puede ocurrir, según una condición o situación particular.'
@@ -254,6 +256,7 @@
     {
       id: 'S35', type: 'single',
       prompt: 'En una herencia, la flecha apunta…',
+      visual: 'Profesor ─────────▷ Persona\n   hijo                 padre',
       options: ['desde la clase hija hacia la clase padre', 'desde la clase padre hacia la clase hija', 'hacia el atributo privado', 'hacia el objeto más reciente'],
       answer: [0],
       explanation: 'Auto y Camioneta apuntan a Vehículo, la clase padre.'
@@ -261,6 +264,7 @@
     {
       id: 'S36', type: 'single',
       prompt: '¿Qué caracteriza a la agregación?',
+      visual: 'Equipo ◇──────── Jugador',
       options: ['Es una relación todo-parte y las partes pueden existir independientemente', 'La parte desaparece necesariamente con el todo', 'Representa un comportamiento opcional', 'Representa cambios de estado'],
       answer: [0],
       explanation: 'La agregación se representa con rombo vacío; el Jugador puede existir sin ese Equipo.'
@@ -268,6 +272,7 @@
     {
       id: 'S37', type: 'single',
       prompt: '¿Qué caracteriza a la composición?',
+      visual: 'Pedido ◆──────── DetallePedido',
       options: ['Es una relación todo-parte fuerte donde la parte depende conceptualmente del todo', 'Las partes siempre existen independientemente', 'Es una relación entre actor y caso de uso', 'Ordena mensajes en el tiempo'],
       answer: [0],
       explanation: 'La composición usa rombo lleno; DetallePedido pierde sentido sin su Pedido.'
@@ -282,6 +287,7 @@
     {
       id: 'S39', type: 'single',
       prompt: 'En Cliente 1 ───── 0..* Pedido, ¿qué se interpreta?',
+      visual: 'Cliente  1 ───────── 0..*  Pedido',
       options: ['Un cliente puede tener muchos pedidos y cada pedido pertenece a un cliente', 'Cada cliente debe tener exactamente un pedido', 'Un pedido puede pertenecer a muchos clientes', 'No existe relación entre Cliente y Pedido'],
       answer: [0],
       explanation: 'El 1 está del lado de Cliente y 0..* del lado de Pedido.'
@@ -431,6 +437,387 @@
       items: ['Métodos', 'Nombre de la clase', 'Atributos'],
       answerOrder: ['Nombre de la clase', 'Atributos', 'Métodos'],
       explanation: 'La representación típica coloca nombre, atributos y métodos, en ese orden.'
+    },
+
+    {
+      id: 'D01', type: 'single',
+      prompt: '¿Cuál de estas notaciones representa una composición?',
+      visualOptions: true,
+      options: [
+        'Pedido ◆──────── DetallePedido',
+        'Pedido ◇──────── DetallePedido',
+        'Pedido ─────────▷ DetallePedido',
+        'Pedido ───────── DetallePedido'
+      ],
+      answer: [0],
+      explanation: 'La composición usa un rombo lleno (◆) del lado del todo: Pedido.'
+    },
+    {
+      id: 'D02', type: 'single',
+      prompt: '¿Por qué este ejemplo es una agregación y no una composición?',
+      visual: 'Equipo ◇──────── Jugador',
+      options: [
+        'Porque el Jugador puede seguir existiendo aunque desaparezca ese Equipo',
+        'Porque el rombo vacío significa herencia',
+        'Porque un Jugador nunca puede pertenecer a un Equipo',
+        'Porque Equipo es una clase hija de Jugador'
+      ],
+      answer: [0],
+      explanation: 'Agregación = todo-parte con independencia. El rombo vacío (◇) queda junto al todo.'
+    },
+    {
+      id: 'D03', type: 'single',
+      prompt: '¿Cómo se interpreta esta generalización?',
+      visual: 'Profesor ─────────▷ Persona\n   hijo                 padre',
+      options: [
+        'Profesor es un tipo de Persona y hereda de ella',
+        'Persona es parte inseparable de Profesor',
+        'Profesor contiene muchas Personas',
+        'Persona es un atributo de Profesor'
+      ],
+      answer: [0],
+      explanation: 'La prueba mental para herencia es “es un tipo de”. La flecha va de la hija a la padre.'
+    },
+    {
+      id: 'D04', type: 'single',
+      prompt: '¿Qué expresa esta línea simple entre clases?',
+      visual: 'Cliente ───────── Pedido',
+      options: [
+        'Una asociación: sus objetos están relacionados',
+        'Una composición obligatoria',
+        'Una generalización',
+        'Un caso de uso incluido'
+      ],
+      answer: [0],
+      explanation: 'Si no hay rombo ni triángulo y solo existe una relación entre objetos, es una asociación.'
+    },
+    {
+      id: 'D05', type: 'single',
+      prompt: '¿Cómo se lee esta multiplicidad?',
+      visual: 'Biblioteca  1 ───────── 0..*  Libro',
+      options: [
+        'Una Biblioteca puede relacionarse con cero o muchos Libros; cada Libro corresponde a una Biblioteca',
+        'Cada Biblioteca debe tener exactamente un Libro',
+        'Cada Libro puede pertenecer a muchas Bibliotecas',
+        'No puede existir una Biblioteca sin Libros'
+      ],
+      answer: [0],
+      explanation: 'La multiplicidad ubicada junto a Libro responde cuántos Libros puede tener una Biblioteca.'
+    },
+    {
+      id: 'D06', type: 'single',
+      prompt: 'Un Cliente puede tener cero o muchos Pedidos. ¿Dónde se escribe 0..*?',
+      visualOptions: true,
+      options: [
+        'Cliente 1 ───────── 0..* Pedido',
+        'Cliente 0..* ───────── 1 Pedido',
+        'Cliente 1 ───────── 1 Pedido',
+        'Cliente 0..1 ───────── 0..1 Pedido'
+      ],
+      answer: [0],
+      explanation: 'Preguntás “un Cliente, ¿cuántos Pedidos?” y escribís la respuesta en la punta de Pedido.'
+    },
+    {
+      id: 'D07', type: 'single',
+      prompt: '“Un chofer puede realizar solamente un viaje a la vez”. ¿Qué conclusión es más correcta?',
+      options: [
+        'Puede conservar una relación histórica 1 a 0..* con Viaje y agregar la restricción de máximo un viaje activo',
+        'La multiplicidad histórica debe ser obligatoriamente 1 a 1',
+        'Chofer y Viaje no deben relacionarse',
+        'La frase obliga a usar composición'
+      ],
+      answer: [0],
+      explanation: 'Multiplicidad y simultaneidad no son lo mismo: puede haber muchos viajes históricos, aunque solo uno esté activo.'
+    },
+    {
+      id: 'D08', type: 'single',
+      prompt: 'En esta clase, ¿qué representa “- patente : String”?',
+      visual: '┌──────────────────────────┐\n│ Vehiculo                 │\n├──────────────────────────┤\n│ - patente : String       │\n│ - capacidad : double     │\n├──────────────────────────┤\n│ + actualizarDatos()      │\n└──────────────────────────┘',
+      options: [
+        'Un atributo privado llamado patente de tipo String',
+        'Un método público que devuelve String',
+        'Una clase hija de String',
+        'Una multiplicidad privada'
+      ],
+      answer: [0],
+      explanation: 'El signo - marca visibilidad privada; después aparecen nombre y tipo.'
+    },
+    {
+      id: 'D09', type: 'single',
+      prompt: 'En “El sistema registra la fecha del viaje”, ¿qué modelado suele ser más razonable?',
+      options: [
+        'Viaje es una clase y fecha es uno de sus atributos',
+        'Fecha siempre debe ser una clase independiente',
+        'RegistrarFecha debe ser una clase',
+        'Viaje debe ser un atributo de Fecha'
+      ],
+      answer: [0],
+      explanation: 'Si algo simplemente describe a una entidad, suele ser atributo. No todo sustantivo se convierte en clase.'
+    },
+    {
+      id: 'D10', type: 'single',
+      prompt: '¿En qué clase ubicarías normalmente el método calcularTotal()?',
+      options: ['Pedido', 'Cliente', 'Sistema', 'Administrador'],
+      answer: [0],
+      explanation: 'El método se coloca donde vive la responsabilidad. El total pertenece conceptualmente al Pedido.'
+    },
+
+    {
+      id: 'U01', type: 'multi',
+      prompt: 'Del enunciado “Los empleados podrán registrar clientes y consultar ventas”, seleccioná las identificaciones correctas.',
+      options: [
+        'Empleado es un actor',
+        'Registrar cliente es un caso de uso',
+        'Consultar ventas es un caso de uso',
+        'Cliente es automáticamente un actor',
+        'Ventas debe ser el límite del sistema'
+      ],
+      answer: [0, 1, 2],
+      explanation: 'Buscá quién interactúa y qué acciones realiza. Los objetos mencionados no se vuelven actores automáticamente.'
+    },
+    {
+      id: 'U02', type: 'single',
+      prompt: 'En un sistema que administra Cliente, Producto y Factura, ¿cuál NO debería marcarse automáticamente como actor?',
+      options: ['Producto', 'Empleado que opera el sistema', 'Cliente que consulta sus facturas', 'Sistema bancario externo'],
+      answer: [0],
+      explanation: 'Producto es una entidad del dominio; no interactúa por sí mismo con el sistema.'
+    },
+    {
+      id: 'U03', type: 'single',
+      prompt: '¿Cuál es el mejor nombre para un caso de uso?',
+      options: ['Registrar vehículo', 'Vehículo', 'Pantalla de vehículo', 'Base de datos'],
+      answer: [0],
+      explanation: 'Un caso de uso se nombra como verbo + objeto porque representa una función.'
+    },
+    {
+      id: 'U04', type: 'single',
+      prompt: '¿Qué regla visual respeta este esquema?',
+      visual: '       Cliente\n          │\n┌─────────┼──────────────────┐\n│ SISTEMA │                  │\n│         └── (Realizar pedido)\n│             (Consultar pedido)\n└────────────────────────────┘',
+      options: [
+        'El actor queda afuera y los casos de uso adentro del límite del sistema',
+        'Los actores deben dibujarse siempre dentro del sistema',
+        'Los casos de uso deben quedar afuera del rectángulo',
+        'El rectángulo representa una clase'
+      ],
+      answer: [0],
+      explanation: 'El límite del sistema contiene funcionalidades; los actores son externos.'
+    },
+    {
+      id: 'U05', type: 'single',
+      prompt: 'En un <<include>>, ¿hacia dónde apunta la flecha?',
+      visual: '(Realizar compra) ── <<include>> ──▷ (Validar pago)',
+      options: [
+        'Hacia el caso que se incluye obligatoriamente: Validar pago',
+        'Hacia el caso principal: Realizar compra',
+        'Hacia el actor',
+        'No lleva dirección'
+      ],
+      answer: [0],
+      explanation: 'Para hacer Realizar compra, siempre se necesita Validar pago; la flecha apunta al incluido.'
+    },
+    {
+      id: 'U06', type: 'single',
+      prompt: 'En un <<extend>>, ¿desde dónde sale la flecha?',
+      visual: '(Enviar notificación) ── <<extend>> ──▷ (Realizar pedido)',
+      options: [
+        'Desde el caso opcional y apunta al caso principal',
+        'Desde el caso principal y apunta al opcional',
+        'Desde el actor y apunta al sistema',
+        'Desde una clase hija y apunta a la padre'
+      ],
+      answer: [0],
+      explanation: 'Enviar notificación es la extensión opcional; la flecha sale de ella y apunta al caso base.'
+    },
+    {
+      id: 'U07', type: 'multi',
+      prompt: 'Antes de entregar un diagrama de casos de uso, ¿qué deberías comprobar?',
+      options: [
+        'Que los actores realmente interactúen con el sistema',
+        'Que los casos de uso sean funciones nombradas con verbos',
+        'Que include sea obligatorio y extend opcional',
+        'Que no se hayan inventado funcionalidades',
+        'Que todos los sustantivos sean actores'
+      ],
+      answer: [0, 1, 2, 3],
+      explanation: 'Ese checklist evita los errores más comunes al pasar de un enunciado al diagrama.'
+    },
+
+    {
+      id: 'X01', type: 'multi',
+      prompt: 'En el problema de transporte del modelo de final, ¿cuáles son las clases mínimas más evidentes?',
+      options: ['Vehiculo', 'Chofer', 'Viaje', 'Patente', 'Registrar viaje'],
+      answer: [0, 1, 2],
+      explanation: 'Vehiculo, Chofer y Viaje son entidades con datos y comportamiento. Patente es atributo y Registrar viaje es una acción.'
+    },
+    {
+      id: 'X02', type: 'match',
+      prompt: 'Relacioná cada clase del problema de transporte con sus atributos más naturales.',
+      left: ['Vehiculo', 'Chofer', 'Viaje'],
+      right: [
+        'patente, modelo, marca, año, capacidad de carga',
+        'nombre, número de licencia, datos de contacto',
+        'origen, destino, fecha, duración, carga transportada'
+      ],
+      answerMap: { 'Vehiculo': 0, 'Chofer': 1, 'Viaje': 2 },
+      explanation: 'Los datos que describen a una entidad se ubican como atributos de esa clase.'
+    },
+    {
+      id: 'X03', type: 'multi',
+      prompt: '¿Cuáles son casos de uso pedidos explícitamente en el modelo de transporte?',
+      options: [
+        'Registrar vehículo',
+        'Actualizar vehículo',
+        'Registrar chofer',
+        'Registrar viaje',
+        'Consultar historial de viajes',
+        'Generar reportes de desempeño',
+        'Patente',
+        'Viaje'
+      ],
+      answer: [0, 1, 2, 3, 4, 5],
+      explanation: 'Los seis correctos son funciones expresadas con verbos; Patente y Viaje no son casos de uso.'
+    },
+    {
+      id: 'X04', type: 'single',
+      prompt: '¿Qué lectura resuelve mejor las relaciones históricas y la restricción “uno a la vez” del modelo?',
+      visual: 'Vehiculo  1 ───────── 0..*  Viaje\nChofer    1 ───────── 0..*  Viaje\n\n{máximo un viaje activo a la vez}',
+      options: [
+        'Cada Viaje tiene un Vehiculo y un Chofer; ambos pueden acumular muchos viajes históricos, con máximo uno activo',
+        'Cada Vehiculo y Chofer solo pueden tener un Viaje en toda su historia',
+        'Viaje no necesita Vehiculo ni Chofer',
+        'La restricción obliga a usar composición en las dos relaciones'
+      ],
+      answer: [0],
+      explanation: 'El enunciado exige asociaciones obligatorias para cada Viaje y una restricción temporal separada.'
+    },
+    {
+      id: 'X05', type: 'match',
+      prompt: 'Asigná cada método a la clase con la responsabilidad más razonable.',
+      left: ['Vehiculo', 'Chofer', 'Viaje', 'Reporte'],
+      right: ['actualizarDatos()', 'actualizarContacto()', 'calcularDuracion()', 'generarResumenCargas()'],
+      answerMap: { 'Vehiculo': 0, 'Chofer': 1, 'Viaje': 2, 'Reporte': 3 },
+      explanation: 'Evitá concentrar todo en una clase Sistema: cada comportamiento debe quedar con su responsable natural.'
+    },
+
+    {
+      id: 'T01', type: 'single',
+      prompt: '¿Para qué sirve una tabla de decisión?',
+      options: [
+        'Para representar qué acciones corresponden a distintas combinaciones de condiciones',
+        'Para mostrar herencia entre clases',
+        'Para ordenar mensajes entre objetos',
+        'Para reemplazar todos los casos de uso'
+      ],
+      answer: [0],
+      explanation: 'Una tabla de decisión hace explícitas las reglas que conectan condiciones con acciones o resultados.'
+    },
+    {
+      id: 'T02', type: 'multi',
+      prompt: '¿Cuáles son las dos partes fundamentales de una tabla de decisión?',
+      options: ['Condiciones', 'Acciones o resultados', 'Atributos privados', 'Actores'],
+      answer: [0, 1],
+      explanation: 'Primero se enumeran las condiciones; luego se indica la acción para cada combinación o regla.'
+    },
+    {
+      id: 'T03', type: 'single',
+      prompt: 'Si hay 3 condiciones binarias (Sí/No), ¿cuántas reglas completas debe tener la tabla?',
+      options: ['8', '6', '9', '3'],
+      answer: [0],
+      explanation: 'Con condiciones binarias se calcula 2ⁿ. Para n = 3: 2³ = 8.'
+    },
+    {
+      id: 'T04', type: 'single',
+      prompt: 'Si hay 4 condiciones binarias, ¿cuántas combinaciones posibles existen?',
+      options: ['16', '8', '12', '32'],
+      answer: [0],
+      explanation: '2⁴ = 16 combinaciones.'
+    },
+    {
+      id: 'T05', type: 'single',
+      prompt: '¿Qué ventaja tiene construir las columnas siguiendo este patrón?',
+      visual: 'Regla       R1 R2 R3 R4 R5 R6 R7 R8\nCondición A  S  S  S  S  N  N  N  N\nCondición B  S  S  N  N  S  S  N  N\nCondición C  S  N  S  N  S  N  S  N',
+      options: [
+        'Cubre sistemáticamente las 8 combinaciones sin repetir ni olvidar ninguna',
+        'Reduce las 8 reglas a solo 3',
+        'Convierte las condiciones en atributos',
+        'Solo funciona cuando todas las respuestas son Sí'
+      ],
+      answer: [0],
+      explanation: 'El patrón cambia cada fila con una frecuencia regular y enumera todas las combinaciones.'
+    },
+    {
+      id: 'T06', type: 'single',
+      prompt: '¿Qué caracteriza a una tabla de decisión extendida?',
+      options: [
+        'Puede usar valores o rangos concretos, no solamente Sí/No',
+        'Solo admite una condición',
+        'No contiene acciones',
+        'Siempre tiene exactamente cuatro reglas'
+      ],
+      answer: [0],
+      explanation: 'Ejemplos de valores extendidos son <18, 18-65, >65 o Nuevo/Habitual.'
+    },
+    {
+      id: 'T07', type: 'single',
+      prompt: 'En el ejercicio de descuentos del modelo, ¿cuáles son las 4 condiciones binarias y cuántas reglas generan?',
+      options: [
+        'Miembro, monto > $100.000, cupón y cliente nuevo: 16 reglas',
+        'Miembro y cupón: 4 reglas',
+        'Monto, descuento y compra: 8 reglas',
+        'Miembro, monto y descuento: 6 reglas'
+      ],
+      answer: [0],
+      explanation: 'Son cuatro decisiones Sí/No, por lo tanto 2⁴ = 16 combinaciones.'
+    },
+    {
+      id: 'T08', type: 'match',
+      prompt: 'Relacioná las condiciones base del modelo con su descuento antes de adicionales.',
+      left: [
+        'Miembro + monto > $100.000',
+        'Miembro + monto ≤ $100.000',
+        'No miembro + monto > $100.000',
+        'No miembro + monto ≤ $100.000'
+      ],
+      right: ['15%', '5%', '10%', '0%'],
+      answerMap: {
+        'Miembro + monto > $100.000': 0,
+        'Miembro + monto ≤ $100.000': 1,
+        'No miembro + monto > $100.000': 2,
+        'No miembro + monto ≤ $100.000': 3
+      },
+      explanation: 'Primero determiná el descuento base; después sumá cupón y condición de cliente nuevo.'
+    },
+    {
+      id: 'T09', type: 'single',
+      prompt: 'Cliente nuevo, miembro, compra de $120.000 y usa cupón. ¿Cuál es el descuento final del modelo?',
+      visual: 'Base por miembro y monto > $100.000  = 15%\nCupón especial                         = +5%\nCliente nuevo                          = +7%',
+      options: ['27%', '15%', '20%', '28,5%'],
+      answer: [0],
+      explanation: 'El enunciado trata los adicionales como puntos porcentuales: 15 + 5 + 7 = 27%.'
+    },
+    {
+      id: 'T10', type: 'order',
+      prompt: 'Ordená el procedimiento para construir una tabla de decisión extendida.',
+      items: [
+        'Comprobar que no falte ninguna situación',
+        'Aplicar las acciones indicadas por el enunciado',
+        'Identificar condiciones y posibles valores',
+        'Generar todas las combinaciones necesarias'
+      ],
+      answerOrder: [
+        'Identificar condiciones y posibles valores',
+        'Generar todas las combinaciones necesarias',
+        'Aplicar las acciones indicadas por el enunciado',
+        'Comprobar que no falte ninguna situación'
+      ],
+      explanation: 'Separar identificación, combinaciones, aplicación y control reduce errores.'
+    },
+    {
+      id: 'T11', type: 'multi',
+      prompt: '¿Qué palabras del enunciado suelen señalar condiciones importantes para tablas de decisión o comportamientos opcionales?',
+      options: ['si', 'solamente si', 'cuando', 'excepto', 'opcionalmente', 'patente'],
+      answer: [0, 1, 2, 3, 4],
+      explanation: 'Las palabras condicionales ayudan a detectar ramas, excepciones y extensiones; patente es un dato del dominio.'
     }
   ];
 
@@ -677,6 +1064,7 @@
   var btnReset = document.getElementById('btn-reset');
   var progressFill = document.getElementById('progress-fill');
   var questionPrompt = document.getElementById('question-prompt');
+  var questionVisual = document.getElementById('question-visual');
   var questionBody = document.getElementById('question-body');
   var feedbackArea = document.getElementById('feedback-area');
   var btnSubmit = document.getElementById('btn-submit');
@@ -722,7 +1110,7 @@
     var name = multiple ? '' : ' name="single"';
     var html = '<ul class="options-list" role="' + (multiple ? 'group' : 'radiogroup') + '" aria-label="Opciones">';
     question.options.forEach(function (option, index) {
-      html += '<li><label class="option">';
+      html += '<li><label class="option' + (question.visualOptions ? ' option-visual' : '') + '">';
       html += '<input type="' + type + '"' + name + ' value="' + index + '">';
       html += '<span>' + escapeHtml(option) + '</span></label></li>';
     });
@@ -737,7 +1125,7 @@
   }
 
   function renderMatch(question) {
-    var html = '<div class="match-rows">';
+    var html = '<div class="match-rows' + (question.visualMatch ? ' visual-match' : '') + '">';
     question.left.forEach(function (left, index) {
       html += '<div class="match-row">';
       html += '<span class="match-left">' + escapeHtml(left) + '</span>';
@@ -971,6 +1359,8 @@
     };
     questionTypeLabel.textContent = typeLabels[question.type];
     questionPrompt.textContent = question.prompt;
+    questionVisual.textContent = question.visual || '';
+    questionVisual.classList.toggle('hidden', !question.visual);
     progressFill.style.width = '0%';
     feedbackArea.classList.add('hidden');
     feedbackArea.innerHTML = '';

@@ -1,6 +1,6 @@
 # UML y modelado de sistemas — Quiz
 
-Variante independiente del quiz principal, armada con el contenido de `Documento sin título.pdf`.
+Quiz independiente armado con el resumen de UML y el modelo `Final_UML (1).pdf`.
 
 ## Contenido
 
@@ -8,8 +8,11 @@ Variante independiente del quiz principal, armada con el contenido de `Documento
 - Diagramas estructurales y de comportamiento.
 - Elementos y relaciones de los diagramas de casos de uso.
 - Elementos, visibilidad, relaciones y multiplicidades de los diagramas de clases.
+- Método para pasar de enunciados a casos de uso y clases.
+- Tablas de decisión simples y extendidas, combinaciones y descuentos acumulativos.
+- Práctica guiada sobre el problema de transporte del modelo de final.
 
-Incluye preguntas de opción única, opción múltiple, relación y orden. El progreso de esta materia usa claves propias, por lo que no se mezcla con el quiz de manipulación de alimentos.
+Incluye 88 preguntas de opción única, opción múltiple, relación y orden. Los ejemplos visuales muestran rombos, flechas, multiplicidades, límites del sistema y tablas. El progreso de esta materia usa claves propias.
 
 ## Cómo ejecutar
 

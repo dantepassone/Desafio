@@ -19,13 +19,13 @@ function loadQuestionBank() {
 const bank = loadQuestionBank();
 
 test('el banco tiene variedad e IDs únicos', () => {
-  assert.equal(bank.length, 55);
+  assert.equal(bank.length, 88);
   assert.equal(new Set(bank.map((question) => question.id)).size, bank.length);
   const counts = Object.groupBy(bank, (question) => question.type);
-  assert.equal(counts.single.length, 39);
-  assert.equal(counts.multi.length, 8);
-  assert.equal(counts.match.length, 6);
-  assert.equal(counts.order.length, 2);
+  assert.equal(counts.single.length, 62);
+  assert.equal(counts.multi.length, 14);
+  assert.equal(counts.match.length, 9);
+  assert.equal(counts.order.length, 3);
 });
 
 test('todas las respuestas apuntan a opciones válidas', () => {
@@ -61,7 +61,10 @@ test('el banco cubre los conceptos centrales del PDF', () => {
     'visibilidad',
     'agregación',
     'composición',
-    'multiplicidad'
+    'multiplicidad',
+    'tabla de decisión',
+    '2⁴ = 16',
+    '$120.000'
   ]) {
     assert.ok(content.includes(term), `Falta cubrir: ${term}`);
   }
@@ -73,4 +76,14 @@ test('la variante usa recursos y almacenamiento propios', () => {
   assert.match(html, /<link rel="stylesheet" href="styles\.css">/);
   assert.match(source, /uml_quiz_stats_/);
   assert.match(source, /uml_quiz_fallback_v1/);
+  assert.doesNotMatch(html, /Volver al quiz de alimentos/);
+});
+
+test('las preguntas visuales incluyen notación UML legible', () => {
+  const visuals = bank.filter((question) => question.visual || question.visualOptions);
+  assert.ok(visuals.length >= 12);
+  const content = JSON.stringify(visuals);
+  for (const symbol of ['◆', '◇', '0..*', '<<include>>', '<<extend>>']) {
+    assert.ok(content.includes(symbol), `Falta la notación visual: ${symbol}`);
+  }
 });
